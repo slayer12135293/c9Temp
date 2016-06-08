@@ -1,0 +1,64 @@
+
+ 
+ 
+ <section class='container' *ngIf='siteSetting'>
+        <h1>{{siteSetting.h1}}</h1>
+        <section class="row bg-success padding-medium">
+            <section class="col-md-12 ">
+                <section class="col-md-4 form-group">
+                    <label>
+                        No. of songs
+                        <input [(ngModel)]="input1" class="form form-control"/>
+                    </label>
+                  </section>  
+                <section class="col-md-4 form-group">
+                    <label> input2
+                        <input [(ngModel)]="input2" class="form form-control"/>
+                    </label>
+                 </section>
+                <section class="col-md-4 form-group">
+                    <label>
+                        input3
+                        <input [(ngModel)]="input3" class="form form-control"/>
+                    </label>
+                </section>
+            </section>
+            <section class="col-md-12 text-right">
+                    <button (click)='randomNumber(input1)' class="btn btn-default"> generate list</button>
+            </section>
+        </section>
+        
+
+        <section>
+              <section class='table-responsive'>
+                <table class='table' *ngIf='wholePlaylist && wholePlaylist.length '>
+                    <thead>
+                        <tr>
+                            <th>
+                                title1
+                            </th>
+                            <th>Product</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let item of displayedList '>
+                            <td>
+                                {{item.name}}
+                            </td>
+                            <td>
+                                 {{item.email}}
+                            </td>
+                          
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+
+        </section>
+     
+        
+
+ </section>
+

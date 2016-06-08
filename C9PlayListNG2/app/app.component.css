@@ -1,0 +1,13 @@
+.banner {
+    background: #F2D33B;
+    width: 100%;
+    background-image: url('http://pictures.4ever.eu/data/674xX/fun/homer-simpson-148094.jpg');
+    background-size: 144px 155px;
+    background-repeat: no-repeat;
+    background-position: right;
+    padding: 30px;
+    font-size: 40px;
+}
+.padding-medium{
+    padding:20px;
+}
