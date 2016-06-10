@@ -1,37 +1,104 @@
-﻿using System.Threading.Tasks;
+﻿using System;
 using System.Web.Mvc;
 using C9playlist.Models;
-using C9playlist.Service;
 
 namespace C9playlist.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IPlayListService _playListService;
-
-        public HomeController(IPlayListService playListService)
-        {
-            _playListService = playListService;
-        }
 
         [HttpGet]
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            var viewModel = new IndexPageViewModel {DisplayedList = await _playListService.GetWholeList()};
-
-            return View( viewModel);
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> Index(IndexPageViewModel model)
-        {
-
-
-            var viewModel = new IndexPageViewModel { DisplayedList = await _playListService.GetRandomListByNumber(model.SearchParams.NumberOfSongs) };
+            var viewModel = new IndexPageViewModel();
 
             return View(viewModel);
         }
 
-    
+        [HttpPost]
+        public ActionResult Index(IndexPageViewModel model, FormCollection form)
+        {
+
+            if (!String.IsNullOrEmpty(model.SearchParams.TrackName))
+            {
+                return RedirectToAction("TrackResult", "Result", new
+                {
+                    albumName = model.SearchParams.AlbumName,
+                    artistName = model.SearchParams.ArtistName,
+                    playListName = model.SearchParams.PlayListName,
+                    trackName = model.SearchParams.TrackName
+                });
+
+            }
+            if (!String.IsNullOrEmpty(model.SearchParams.PlayListName))
+            {
+                return RedirectToAction("PlaylistResult", "Result", new
+                {
+                    albumName = model.SearchParams.AlbumName,
+                    artistName = model.SearchParams.ArtistName,
+                    playListName = model.SearchParams.PlayListName,
+                    trackName = model.SearchParams.TrackName
+                });
+
+            }
+
+
+            string resultType;
+            switch (form["ResultType"])
+            {
+                case "0":
+                    resultType = ItemType.Album.ToString().ToLower();
+                    return RedirectToAction("AlbumResult", "Result", new
+                    {
+                        albumName = model.SearchParams.AlbumName,
+                        artistName = model.SearchParams.ArtistName,
+                        playListName = model.SearchParams.PlayListName,
+                        trackName = model.SearchParams.TrackName,
+                        type = resultType
+                    });
+                case "1":
+                    resultType = ItemType.Artist.ToString().ToLower();
+                    return RedirectToAction("ArtistResult", "Result", new
+                    {
+                        albumName = model.SearchParams.AlbumName,
+                        artistName = model.SearchParams.ArtistName,
+                        playListName = model.SearchParams.PlayListName,
+                        trackName = model.SearchParams.TrackName,
+                         type = resultType
+                    });
+                case "2":
+                    resultType = ItemType.Track.ToString().ToLower();
+                    return RedirectToAction("TrackResult", "Result", new
+                    {
+                        albumName = model.SearchParams.AlbumName,
+                        artistName = model.SearchParams.ArtistName,
+                        playListName = model.SearchParams.PlayListName,
+                        trackName = model.SearchParams.TrackName,
+                         type = resultType
+                    });
+                case "3":
+                    resultType = ItemType.Playlist.ToString().ToLower();
+                    return RedirectToAction("PlaylistResult", "Result", new
+                    {
+                        albumName = model.SearchParams.AlbumName,
+                        artistName = model.SearchParams.ArtistName,
+                        playListName = model.SearchParams.PlayListName,
+                        trackName = model.SearchParams.TrackName,
+                        type = resultType
+                    });
+                default:
+                    resultType = ItemType.Track.ToString().ToLower();
+                    return RedirectToAction("TrackResult", "Result", new
+                    {
+                        albumName = model.SearchParams.AlbumName,
+                        artistName = model.SearchParams.ArtistName,
+                        playListName = model.SearchParams.PlayListName,
+                        trackName = model.SearchParams.TrackName,
+                        type = resultType
+                    });
+            }
+        }
+
+
     }
 }

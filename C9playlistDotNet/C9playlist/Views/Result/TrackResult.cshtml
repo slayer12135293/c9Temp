@@ -1,0 +1,80 @@
+﻿@model C9playlist.Models.TrackResultPageViewModel
+
+@{
+    ViewBag.Title = "title";
+   
+}
+
+<h2>Track result</h2>
+<section class="row">
+    <section class="col-md-12 bg-success">
+        <label>Limit: @Model.Limit</label>
+        <label>Total: @Model.Total</label>
+    </section>
+</section>
+
+
+<section class="row">
+    <section class="col-md-12">
+
+        @{
+            if (Model.Tracks.Any())
+            {
+                <section class='table-responsive'>
+                    <table class='table'>
+                        <thead>
+                            <tr>
+                                <th>
+
+                                </th>
+                                <th>Name</th>
+                                <th>ArtistNames</th>
+                                <th>SongName</th>
+                                <th>
+
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                foreach (var item in Model.Tracks)
+                {
+                    <tr>
+                        <td>
+                            <img src="@item.AlbumImg" class="thumbImg" />
+                        </td>
+                        <td>
+                            @item.AlbumName
+                        </td>
+                        <td>
+                            @foreach (var name in item.ArtistNames)
+                            {
+                                <span>@name  </span>
+                            }
+
+                           
+                        </td>
+                        <td>
+                            @item.SongName
+                        </td>
+                        <td>
+                            <a href="@item.Uri" target="_blank" class="btn btn-info">Go to Album </a>
+                        </td>
+
+
+                    </tr>
+                }
+                            }
+
+                        </tbody>
+                    </table>
+                </section>
+            }
+        }
+
+
+
+
+    </section>
+</section>

@@ -1,0 +1,75 @@
+﻿@model C9playlist.Models.PlaylistResultPageViewModel
+
+@{
+    ViewBag.Title = "title";
+    
+}
+
+<h2>Playlist Result</h2>
+<section class="row">
+    <section class="col-md-12 bg-success">
+        <label>Limit: @Model.Limit</label>
+        <label>Total: @Model.Total</label>
+    </section>
+</section>
+
+
+<section class="row">
+    <section class="col-md-12">
+
+        @{
+            if (Model.PlayLists.Any())
+            {
+                <section class='table-responsive'>
+                    <table class='table'>
+                        <thead>
+                            <tr>
+                                <th>
+
+                                </th>
+                                <th>Name</th>
+                                <th>Owner Id</th>
+                                <th>Id</th>
+                                <th>
+
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                foreach (var item in Model.PlayLists)
+                {
+                    <tr>
+                        <td>
+                            <img src="@item.Image" class="thumbImg" />
+                        </td>
+                        <td>
+                            @item.Name
+                        </td>
+                        <td>
+                            @item.Owner
+                        </td>
+                        <td>
+                            @item.Id
+                        </td>
+                        <td>
+                            <a href="@item.Uri" target="_blank" class="btn btn-info">Go to Album </a>
+                        </td>
+
+
+                    </tr>
+                }
+                            }
+
+                        </tbody>
+                    </table>
+                </section>
+            }
+        }
+
+
+
+
+    </section>
+</section>

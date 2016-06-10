@@ -34,3 +34,7 @@ textarea {
 .padding-medium{
     padding:20px;
 }
+.thumbImg {
+    width: 60px;
+    height: 60px;
+}

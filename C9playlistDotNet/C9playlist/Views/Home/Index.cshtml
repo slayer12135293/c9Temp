@@ -1,4 +1,5 @@
-﻿@model C9playlist.Models.IndexPageViewModel
+﻿@using C9playlist.Models
+@model C9playlist.Models.IndexPageViewModel
 @{
     ViewBag.Title = "Home Page";
 }
@@ -8,65 +9,42 @@
  @using (Html.BeginForm())
  {
      <section class="col-md-12 ">
-         <section class="col-md-4 form-group">
+        <section class="col-md-4 form-group">
              <label>
-                 No. of songs
-                 @Html.EditorFor(model => model.SearchParams.NumberOfSongs, new { htmlAttributes = new { @class = "form-control" } })
+                 Artist Name
+                 @Html.EditorFor(model => model.SearchParams.ArtistName, new { htmlAttributes = new { @class = "form-control" } })
              </label>
          </section>
          <section class="col-md-4 form-group">
              <label>
+                 Album Name
+                 @Html.EditorFor(model => model.SearchParams.AlbumName, new { htmlAttributes = new { @class = "form-control" } })
+             </label>
+         </section>
+         <section class="col-md-4 form-group">
+             <label>
+                 Song Name
+                 @Html.EditorFor(model => model.SearchParams.TrackName, new { htmlAttributes = new { @class = "form-control" } })
+             </label>
+         </section>
+         <section class="col-md-4 form-group">
+             <label>
+                 Playlist Name
+                 @Html.EditorFor(model => model.SearchParams.PlayListName, new { htmlAttributes = new { @class = "form-control" } })
+             </label>
+         </section>
+         <section class="col-md-4 form-group">
+             <label>
+                 Result Type
+                 @Html.DropDownList("ResultType",
+                        EnumHelper.GetSelectList(typeof(ItemType)),
+                        new { @class = "form-control col-md-4" }
+                        )
+             </label>
+         </section>
 
-             </label>
-         </section>
-         <section class="col-md-4 form-group">
-             <label>
-
-             </label>
-         </section>
+     
      </section>
      <section class="col-md-12 text-right"><input type="submit" value="Generate List" class="btn btn-default" /></section>
  }
-</section>
-<section class="row">
-    @if (Model.DisplayedList.Any())
-    {
-
-        <section>
-            <section class='table-responsive'>
-                <table class='table'>
-                    <thead>
-                        <tr>
-                            <th>
-                                title1
-                            </th>
-                            <th>Product</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.DisplayedList)
-                        {
-                            <tr>
-                                <td>
-                                   @item.Name
-                                </td>
-                                <td>
-                                    @item.Property1
-                                </td>
-
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </section>
-
-        </section>
-
-
-
-
-    }
-
-
 </section>

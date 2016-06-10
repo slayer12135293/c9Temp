@@ -172,13 +172,20 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ResultController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AlbumViewModel.cs" />
+    <Compile Include="Models\ArtistViewModel.cs" />
+    <Compile Include="Models\ComboViewModels.cs" />
     <Compile Include="Models\IndexPageViewModel.cs" />
+    <Compile Include="Models\ItemType.cs" />
     <Compile Include="Models\JsonObject.cs" />
+    <Compile Include="Models\PlayListViewModel.cs" />
     <Compile Include="Models\SearchParamViewModel.cs" />
     <Compile Include="Models\SongListItemViewModel.cs" />
+    <Compile Include="Models\TrackViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\IPlayListService.cs" />
     <Compile Include="Service\PlayListService.cs" />
@@ -220,6 +227,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Result\AlbumResult.cshtml" />
+    <Content Include="Views\Result\ArtistResult.cshtml" />
+    <Content Include="Views\Result\TrackResult.cshtml" />
+    <Content Include="Views\Result\PlaylistResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
