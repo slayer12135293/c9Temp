@@ -27,10 +27,19 @@ System.register(['@angular/core', '@angular/http', 'rxjs/Observable'], function(
             PlayListService = (function () {
                 function PlayListService(_http) {
                     this._http = _http;
-                    this._settingUrl = "http://jsonplaceholder.typicode.com/comments";
+                    this._settingUrl = "https://api.spotify.com/v1/search?";
                 }
                 PlayListService.prototype.getWholeList = function () {
-                    return this._http.get(this._settingUrl)
+                    return this._http.get(this._settingUrl + "q=opeth&type=track")
+                        .map(function (response) { return response.json(); })
+                        .catch(this.handleError);
+                };
+                PlayListService.prototype.getListByFreeText = function (inText, inNumber) {
+                    var limit = 50;
+                    if (inNumber > 0) {
+                        limit = inNumber;
+                    }
+                    return this._http.get(this._settingUrl + "q=" + inText + "&type=track&offset=100&limit=" + limit)
                         .map(function (response) { return response.json(); })
                         .catch(this.handleError);
                 };

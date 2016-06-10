@@ -8,7 +8,6 @@ import {ISiteSetting} from './service/static.model';
 import {PlayListService} from './service/playlist.service';
 
 
-
 @Component({
     selector: 'c9-app',
     template: `

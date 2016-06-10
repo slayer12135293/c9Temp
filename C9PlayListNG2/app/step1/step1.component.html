@@ -5,49 +5,65 @@
         <h1>{{siteSetting.h1}}</h1>
         <section class="row bg-success padding-medium">
             <section class="col-md-12 ">
-                <section class="col-md-4 form-group">
-                    <label>
-                        No. of songs
-                        <input [(ngModel)]="input1" class="form form-control"/>
-                    </label>
-                  </section>  
-                <section class="col-md-4 form-group">
-                    <label> input2
-                        <input [(ngModel)]="input2" class="form form-control"/>
+                
+                <section class="col-md-6 form-group">
+                    <label> Free text
+                        <input [(ngModel)]="freeText" class="form form-control"/>
                     </label>
                  </section>
-                <section class="col-md-4 form-group">
+
+
+                 <section class="col-md-6 form-group">
                     <label>
-                        input3
-                        <input [(ngModel)]="input3" class="form form-control"/>
+                        No. of songs
+                        <input [(ngModel)]="noofitems" type="number" class="form form-control"/>
                     </label>
-                </section>
+                  </section>  
+               
             </section>
             <section class="col-md-12 text-right">
-                    <button (click)='randomNumber(input1)' class="btn btn-default"> generate list</button>
+                    <button (click)='getResult(freeText)' class="btn btn-info"> generate list</button>
+                    <button (click)='shuffle()' class="btn btn-info"> shuffle list</button>
             </section>
         </section>
         
+<section>
 
-        <section>
+</section>
+
+
+
+        <section>            
               <section class='table-responsive'>
-                <table class='table' *ngIf='wholePlaylist && wholePlaylist.length '>
+                <table class='table' *ngIf='displayedList && displayedList.length '>
                     <thead>
                         <tr>
                             <th>
-                                title1
+
                             </th>
-                            <th>Product</th>
-                            
+                            <th>
+                                Name
+                            </th>
+                            <th>Id</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
+                        <!-- kan använda en cust pipe här  | itemSort -->
                         <tr *ngFor='let item of displayedList '>
+                            <td>                                
+                                <img [src]='item.imgUri' class="imgthumb" />
+                            </td>
+
                             <td>
-                                {{item.name}}
+                                {{item.title}}
                             </td>
                             <td>
-                                 {{item.email}}
+                                 {{item.Id}}
+                            </td>
+                            <td>
+                              <a [href] = 'item.link' class="btn btn-default" target="_blank" > Play </a>
+
                             </td>
                           
                         </tr>
